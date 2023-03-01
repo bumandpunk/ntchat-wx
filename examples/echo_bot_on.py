@@ -27,15 +27,6 @@ with open("zhiling.json", 'r', encoding='utf-8') as main:
      allZhiling = json.load(main)
 
 
-
-
-# The AI will forget it was speaking Portuguese
-# conversation.reset()
-# print(conversation.chat("What's the color of the sun?"))
-# 定时发送指定文案
-global t
-
-
 def minguo():
     api_url = 'https://apis.tianapi.com/mgjuzi/index'
     params_dict = {
@@ -297,7 +288,7 @@ def tianqi(val):
     api_url = 'https://api.tianapi.com/tianqi/index'
     params_dict = {
         "city": val,  # 查询天气的城市名称，如：北京、苏州、上海
-        "key": "af29a1b9beeb5eaf4b48cfc33ccfb8a4",  # 您申请的接口API接口请求Key
+        "key": "xxxxxxxxxxxxxxxxxx",  # 您申请的接口API接口请求Key
     }
     params = urllib.parse.urlencode(params_dict)
     try:

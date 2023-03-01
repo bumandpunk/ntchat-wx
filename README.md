@@ -1,6 +1,6 @@
-<h1 align="center">NtChat-wx</h1>
+<h1 align="center">NtChat-WX</h1>
 <p align="center">
-    <a href="https://github.com/bumandpunk/ntchat-wx/releases"><img src="https://img.shields.io/badge/release-0.1.16-blue.svg?" alt="release"></a>
+    <a href="https://github.com/bumandpunk/ntchat-wx/releases"><img src="https://img.shields.io/badge/release-1.0.0-blue.svg?" alt="release"></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-brightgreen.svg?" alt="License"></a>
 </p>
 

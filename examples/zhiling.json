@@ -1,3 +1,10 @@
+/*
+    * @property {String}			triggerMode			匹配模式
+    * @property {String}			trigger			    匹配关键词
+    * @property {String}			functionName	    调用方法名
+    * @property {String}			sendType			发送消息类型
+    * @property {Boolean}			needPower			是否需要权限
+*/
 [{
         "triggerMode": "match",
         "trigger": "指令",
