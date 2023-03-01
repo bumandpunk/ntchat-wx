@@ -1,0 +1,129 @@
+[{
+        "triggerMode": "match",
+        "trigger": "指令",
+        "functionName": "zhiling_text()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "match",
+        "trigger": "6",
+        "functionName": "kou6()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "match",
+        "trigger": "emo",
+        "functionName": "emo()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "match",
+        "trigger": "开喷",
+        "functionName": "penren()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "match",
+        "trigger": "舔",
+        "functionName": "tiangou()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "contain",
+        "trigger": "天气-",
+        "functionName": "tianqi(data['msg'].split('天气-')[1])",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "contain",
+        "trigger": "疫情-",
+        "functionName": "yiqing(data['msg'].split('疫情-')[1])",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "contain",
+        "trigger": "转图-",
+        "functionName": "texttoimg(data['msg'].split('转图-')[1])",
+        "sendType": "img",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "contain",
+        "trigger": "AI-",
+        "functionName": "aichat(data['msg'].split('AI-')[1])",
+        "sendType": "text",
+        "needPower" :true
+    },
+    {
+        "triggerMode": "match",
+        "trigger": "爱你",
+        "functionName": "aini()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "match",
+        "trigger": "文案",
+        "functionName": "wenan()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "match",
+        "trigger": "情诗",
+        "functionName": "shi()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "match",
+        "trigger": "情话",
+        "functionName": "qinghua()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "match",
+        "trigger": "发烧",
+        "functionName": "saohua()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "match",
+        "trigger": "句子",
+        "functionName": "minguo()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "match",
+        "trigger": "台词",
+        "functionName": "taici()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        "triggerMode": "match",
+        "trigger": "星期四",
+        "functionName": "four()",
+        "sendType": "text",
+        "needPower" :false
+    },
+    {
+        
+            "triggerMode": "at",
+            "trigger": "StillFantasy_",
+            "functionName": "jiqi(data['msg'].split('@淡水海边\u2005')[1].replace(' ',''))",
+            "sendType": "text",
+            "needPower" :false
+        
+    }
+]
