@@ -15,7 +15,7 @@
 - 微信机器人demo及相关功能示例见ntchat-wx/examples/echo_bot_on.py,已实现对接第三方api功能及机器人权限控制
   
 ## 支持的微信版本下载
-- 下载 [WeChatSetup3.6.0.18.exe](https://github.com/tom-snow/wechat-windows-versions/releases/download/v3.6.0.18/WeChatSetup-3.6.0.18.exe)
+- 下载 [WeChatSetup3.6.0.18.exe](https://github.com/bumandpunk/ntchat-wx/releases/download/v3.6.0.18/WeChatSetup-3.6.0.18.exe)
 
 ## 帮助文档
 - 查看 [常见问题](docs/FAQ.md)

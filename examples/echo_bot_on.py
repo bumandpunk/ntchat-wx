@@ -3,14 +3,14 @@ import sys
 import time
 import os
 
-# from soupsieve import select
+
 os.environ['NTCHAT_LOG'] = "ERROR"
 import ntchat
 import requests
 import json
 import random
 import threading
-# import pymysql
+
 wechat = ntchat.WeChat()
 import urllib
 import urllib.request as request
@@ -51,7 +51,7 @@ def minguo():
                 return("解析结果异常：%s" % e)
         else:
             # 可能网络异常等问题，无法获取返回内容，请求异常
-            return("滚阿,别查了")
+            return(" 阿,别查了")
     except error.HTTPError as err:
         return('HTTPError等会再查')
     except error.URLError as err:
@@ -81,7 +81,7 @@ def qinghua():
                 return("解析结果异常：%s" % e)
         else:
             # 可能网络异常等问题，无法获取返回内容，请求异常
-            return("滚阿,别查了")
+            return(" 阿,别查了")
     except error.HTTPError as err:
         return('HTTPError等会再查')
     except error.URLError as err:
@@ -111,7 +111,7 @@ def shi():
                 return("解析结果异常：%s" % e)
         else:
             # 可能网络异常等问题，无法获取返回内容，请求异常
-            return("滚阿,别查了")
+            return(" 阿,别查了")
     except error.HTTPError as err:
         return('HTTPError等会再查')
     except error.URLError as err:
@@ -141,7 +141,7 @@ def emo():
                 return("解析结果异常：%s" % e)
         else:
             # 可能网络异常等问题，无法获取返回内容，请求异常
-            return("滚阿,别查了")
+            return(" 阿,别查了")
     except error.HTTPError as err:
         return('HTTPError等会再查')
     except error.URLError as err:
@@ -172,7 +172,7 @@ def tiangou():
                 return("解析结果异常：%s" % e)
         else:
             # 可能网络异常等问题，无法获取返回内容，请求异常
-            return("滚阿,别查了")
+            return(" 阿,别查了")
     except error.HTTPError as err:
         return('HTTPError等会再查')
     except error.URLError as err:
@@ -203,7 +203,7 @@ def aini():
                 return("解析结果异常：%s" % e)
         else:
             # 可能网络异常等问题，无法获取返回内容，请求异常
-            return("滚阿,别查了")
+            return(" 阿,别查了")
     except error.HTTPError as err:
         return('HTTPError等会再查')
     except error.URLError as err:
@@ -233,7 +233,7 @@ def wenan():
                 return("解析结果异常：%s" % e)
         else:
             # 可能网络异常等问题，无法获取返回内容，请求异常
-            return("滚阿,别查了")
+            return(" 阿,别查了")
     except error.HTTPError as err:
         return('HTTPError等会再查')
     except error.URLError as err:
@@ -263,7 +263,7 @@ def taici():
                 return("解析结果异常：%s" % e)
         else:
             # 可能网络异常等问题，无法获取返回内容，请求异常
-            return("滚阿,别查了")
+            return(" 阿,别查了")
     except error.HTTPError as err:
         return('HTTPError等会再查')
     except error.URLError as err:
@@ -321,7 +321,7 @@ def tianqi(val):
                 return("解析结果异常：%s" % e)
         else:
             # 可能网络异常等问题，无法获取返回内容，请求异常
-            return("滚阿,别查了")
+            return("阿,别查了")
     except error.HTTPError as err:
         return('HTTPError等会再查')
     except error.URLError as err:
@@ -406,7 +406,7 @@ def yiqing(val):
                 return("解析结果异常：%s" % e)
         else:
             # 可能网络异常等问题，无法获取返回内容，请求异常
-            return("滚阿,别查了")
+            return(" 阿,别查了")
     except error.HTTPError as err:
         return('HTTPError等会再查')
     except error.URLError as err:
@@ -514,7 +514,7 @@ def sendMsg(wechat_instance,room_wxid,funname,type,from_wxid,data,it):
     with open("powerlist.json", 'r', encoding='utf-8') as power:
             pdata = json.load(power)
     if from_wxid in blist['list']:
-            wechat_instance.send_text(to_wxid=room_wxid, content='您已被拉黑 别他妈发了[微笑]' )
+            wechat_instance.send_text(to_wxid=room_wxid, content='您已被拉黑 别发了[微笑]' )
     else:
             if it['needPower'] == True :            #需要权限的指令
                  if from_wxid in pdata['list']:     #有权限
