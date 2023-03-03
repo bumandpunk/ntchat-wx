@@ -26,6 +26,25 @@ with open("four.json", 'r', encoding='utf-8') as fw2:
 with open("zhiling.json", 'r', encoding='utf-8') as main:
      allZhiling = json.load(main)
 
+ 
+global t
+def fun_timer():
+    #定时发送指定文案
+    print(time.strftime('%H:%M'))
+    if(time.strftime('%H:%M')=="11:11"):
+         wechat.send_text(to_wxid="xxxx", content="xxxx")
+    #定时发送发送群聊拍一拍
+    wechat.send_pat(room_wxid='xxxx',patted_wxid='xxxx')
+    #定时发送发送群聊@
+    wechat.send_room_at_msg(to_wxid='xxxx',
+            content='{$@}怎么不说话',
+            at_list=['xxx'])
+    #20s执行一次
+    t=threading.Timer(20.0,fun_timer)
+    
+    t.start()
+
+fun_timer()
 
 def minguo():
     api_url = 'https://apis.tianapi.com/mgjuzi/index'
