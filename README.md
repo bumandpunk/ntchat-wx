@@ -26,6 +26,10 @@
 ```bash
 pip install ntchat
 ```
+如需chatgpt功能
+```bash
+pip install openai
+```
 国内源安装
 ```bash
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple ntchat

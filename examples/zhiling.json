@@ -57,7 +57,7 @@
     {
         "triggerMode": "contain",
         "trigger": "AI-",
-        "functionName": "aichat(data['msg'].split('AI-')[1])",
+        "functionName": "chatgptai(data['msg'].split('AI-')[1])",
         "sendType": "text",
         "needPower" :true
     },

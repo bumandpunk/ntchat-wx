@@ -10,7 +10,7 @@ import ntchat
 import sys
 import time
 import os
-
+import openai
 
 os.environ['NTCHAT_LOG'] = "ERROR"
 
@@ -26,6 +26,24 @@ with open("four.json", 'r', encoding='utf-8') as fw2:
 with open("zhiling.json", 'r', encoding='utf-8') as main:
     allZhiling = json.load(main)
 
+
+
+chatData = []
+
+def chatgptai(val):
+ #用户发言
+ data = {"role": "user", "content": val}
+ #首次把用户发言加入数组中
+ chatData.append(data)#组织名及api填写
+ openai.organization = "xxxxxxxxxxxx"
+ openai.api_key = "apikey"
+ completion = openai.ChatCompletion.create(
+  model="gpt-3.5-turbo",
+  messages=chatData
+)
+ #把回复内容也加进去，下次用
+ chatData.append(completion.choices[0].message)
+ return completion.choices[0].message.content.replace('\n', '')
 
 global t
 
