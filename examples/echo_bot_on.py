@@ -44,7 +44,28 @@ def chatgptai(val):
  #把回复内容也加进去，下次用
  chatData.append(completion.choices[0].message)
  return completion.choices[0].message.content.replace('\n', '')
+def chatgptimg(val):
 
+  openai.organization = "xxxxx"
+  openai.api_key = "xxxxxxxx"
+  completion = openai.Image.create(
+  prompt=val,
+  n=1,
+  size="512x512"
+)
+
+  image_url= completion.data[0].url
+  headers ={
+            'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36'
+            }
+  r = requests.get(image_url,headers=headers)
+  imgName = val + str(random.randint(1,999))
+  bendi_url = './resources/imgList/'+ imgName +'.jpg'
+  
+  with open(bendi_url ,mode = "wb") as f:
+      f.write(r.content) #图片内容写入文件
+      return_url = '本地文件夹路径' + imgName + '.jpg'
+      return  return_url
 global t
 
 

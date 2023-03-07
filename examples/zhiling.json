@@ -62,6 +62,13 @@
         "needPower" :true
     },
     {
+        "triggerMode": "contain",
+        "trigger": "AI-",
+        "functionName": "chatgptimg(data['msg'].split('AI-')[1])",
+        "sendType": "img",
+        "needPower" :true
+    },
+    {
         "triggerMode": "match",
         "trigger": "爱你",
         "functionName": "aini()",
