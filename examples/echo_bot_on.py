@@ -534,104 +534,79 @@ def texttoimg(val):
         return return_url
 
 
+def load_json(file):
+    with open(file, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def save_json(file, data):
+    with open(file, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=4)
+
+def modify_user_list(wechat_instance, room_wxid, filename, user, revoke_msg, grant_msg):
+    data = load_json(filename)
+    if user in data['list']:
+        data['list'].remove(user)
+        wechat_instance.send_text(to_wxid=room_wxid, content=revoke_msg)
+    else:
+        data['list'].append(user)
+        wechat_instance.send_text(to_wxid=room_wxid, content=grant_msg)
+    save_json(filename, data)
 def on_recv_text_msg(wechat_instance: ntchat.WeChat, message):
-    with open("room.json", 'r', encoding='utf-8') as room:
-        allRoom = json.load(room)
-    with open("powerlist.json", 'r', encoding='utf-8') as power:
-        allPower = json.load(power)
+    allRoom = load_json("room.json")
+    allPower = load_json("powerlist.json")
+    allZhiling = load_json("zhiling.json")
 
     data = message["data"]
     from_wxid = data["from_wxid"]
+    # 可替换机器人控制人账号
     self_wxid = wechat_instance.get_login_info()["wxid"]
     room_wxid = data["room_wxid"]
 
-    # 先判断是否在接受指令的群里
     for item in allRoom['list']:
         if room_wxid in item:
-
             for it in allZhiling:
-                # 全字匹配的指令  从哪来的发到哪里去
-                if (data['msg']) == it['trigger'] and it['triggerMode'] == 'match' and it['sendType'] == 'text':
-                    sendMsg(wechat_instance, room_wxid,
-                            it['functionName'], it['sendType'], from_wxid, data, it)
+                    should_send = False
+                    if it['triggerMode'] == 'contain' and data['msg'].startswith(it['trigger']) and it['sendType'] in ['text', 'img']:
+                        should_send = True
+                    elif it['triggerMode'] == 'match' and data['msg'] == it['trigger'] and it['sendType'] == 'text':
+                        should_send = True
+                    elif it['triggerMode'] == 'at' and it['trigger'] in data['at_user_list']:
+                        should_send = True
+                
+                    if should_send:
+                        sendMsg(wechat_instance, room_wxid, it['functionName'], it['sendType'], from_wxid, data, it)
 
-                    #  包含匹配
-                elif (data['msg'].startswith(it['trigger']) and it['triggerMode'] == 'contain' and it['sendType'] == 'text'):
-                    sendMsg(wechat_instance, room_wxid,
-                            it['functionName'], it['sendType'], from_wxid, data, it)
-                    #  发图指令
-                elif (data['msg'].startswith(it['trigger']) and it['triggerMode'] == 'contain' and it['sendType'] == 'img'):
-                    sendMsg(wechat_instance, room_wxid,
-                            it['functionName'], it['sendType'], from_wxid, data, it)
+            
 
-                #  艾特指令
-                elif (it['trigger'] in data['at_user_list'] and it['triggerMode'] == 'at'):
-                    sendMsg(wechat_instance, room_wxid,
-                            it['functionName'], it['sendType'], from_wxid, data, it)
-
-            # 我艾特谁就把谁拉黑      包含授权关键词加入权限列表中
             if from_wxid == self_wxid and data['at_user_list']:
                 if '授权' in data['msg']:
-                    with open("powerlist.json", 'r', encoding='utf-8') as power:
-                        pdata = json.load(power)
-                        if (data['at_user_list'][0] in pdata['list']):
-                            pdata['list'].pop(pdata['list'].index(
-                                data['at_user_list'][0]))
-                            wechat_instance.send_text(
-                                to_wxid=room_wxid, content='微信:'+data['at_user_list'][0]+'已取消管理员')
-                        else:
-                            pdata['list'].append(data['at_user_list'][0])
-                            wechat_instance.send_text(
-                                to_wxid=room_wxid, content='微信:'+data['at_user_list'][0]+'添加管理员成功\n可指令控制开关机')
-                    with open("powerlist.json", 'w', encoding='utf-8') as power:
-                        json.dump(pdata, power, indent=4)
+                    modify_user_list(wechat_instance, room_wxid, "powerlist.json", data['at_user_list'][0],
+                                     '微信:'+data['at_user_list'][0]+'已取消管理员',
+                                     '微信:'+data['at_user_list'][0]+'添加管理员成功\n可指令控制开关机')
                 else:
-                    with open("blacklist.json", 'r', encoding='utf-8') as black:
-                        bdata = json.load(black)
-                        # 在黑名单中就解除拉黑
-                        if (data['at_user_list'][0] in bdata['list']):
-                            bdata['list'].pop(bdata['list'].index(
-                                data['at_user_list'][0]))
-                            wechat_instance.send_text(
-                                to_wxid=room_wxid, content='微信:'+data['at_user_list'][0]+'已解除')
-                        else:
-                            bdata['list'].append(data['at_user_list'][0])
-                            wechat_instance.send_text(
-                                to_wxid=room_wxid, content='微信:'+data['at_user_list'][0]+'已被拉黑')
-                    with open("blacklist.json", 'w', encoding='utf-8') as black:
-                        json.dump(bdata, black, indent=4)
-    # 添加和删除群机器人指令，在循环外
-    if from_wxid in allPower['list'] and data['msg'] == '开机':
-        with open("room.json", 'r', encoding='utf-8') as room:
-            allList = json.load(room)
-            wechat_instance.send_text(
-                to_wxid=room_wxid, content='已启动--发送[指令]查看全部指令')
-        # 没在开启的群数组里 添加进去
-            if (room_wxid in allList['list']):
-                return
-            else:
-                allList['list'].append(room_wxid)
-                with open("room.json", 'w', encoding='utf-8') as room:
-                    json.dump(allList, room, indent=4)
+                    modify_user_list(wechat_instance, room_wxid, "blacklist.json", data['at_user_list'][0],
+                                     '微信:'+data['at_user_list'][0]+'已解除',
+                                     '微信:'+data['at_user_list'][0]+'已被拉黑')
 
-    if from_wxid in allPower['list'] and data['msg'] == '关机':
-        with open("room.json", 'r', encoding='utf-8') as room:
-            allList = json.load(room)
-            wechat_instance.send_text(
-                to_wxid=room_wxid, content='已关闭--see you ')
-        # 没在开启的群数组里 添加进去
-            if (room_wxid in allList['list']):
-                allList['list'].pop(allList['list'].index(room_wxid))
-                with open("room.json", 'w', encoding='utf-8') as room:
-                    json.dump(allList, room, indent=4)
+    if from_wxid in allPower['list']:
+        allList = load_json("room.json")
+        if data['msg'] == '开机':
+            wechat_instance.send_text(to_wxid=room_wxid, content='已启动--发送[指令]查看全部指令')
+            if room_wxid not in allList['list']:
+                allList['list'].append(room_wxid)
+                save_json("room.json", allList)
+        elif data['msg'] == '关机':
+            wechat_instance.send_text(to_wxid=room_wxid, content='已关闭--see you ')
+            if room_wxid in allList['list']:
+                allList['list'].remove(room_wxid)
+                save_json("room.json", allList)
+
 
 
 def sendMsg(wechat_instance, room_wxid, funname, type, from_wxid, data, it):
     # 发消息之前判断这个人是否在黑名单中
-    with open("blacklist.json", 'r', encoding='utf-8') as black:
-        blist = json.load(black)
-    with open("powerlist.json", 'r', encoding='utf-8') as power:
-        pdata = json.load(power)
+    blist = load_json("blacklist.json")
+    pdata = load_json("powerlist.json")
     if from_wxid in blist['list']:
         wechat_instance.send_text(to_wxid=room_wxid, content='您已被拉黑 别发了[微笑]')
     else:
