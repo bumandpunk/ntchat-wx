@@ -11,7 +11,7 @@
 
 - 基于pc微信的api接口
 - 支持收发文本、群@、名片、图片、文件、视频、链接卡片等
-- 微信机器人demo及相关功能示例见ntchat-wx/examples/echo_bot_on.py,已实现对接第三方api功能及机器人权限控制
+- 微信机器人demo及相关功能示例见 [examples/echo_bot_on.py](examples/echo_bot_on.py)  ,已实现对接第三方api功能及机器人权限控制
 - demo中api使用天行数据和https://api.aa1.cn/ 的免费api ，可自行申请替换key
 ## 支持的微信版本下载
 - 下载 [WeChatSetup3.6.0.18.exe](https://github.com/bumandpunk/ntchat-wx/releases/download/v3.6.0.18/WeChatSetup-3.6.0.18.exe)
@@ -33,6 +33,11 @@ pip install openai
 国内源安装
 ```bash
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple ntchat
+```
+启动机器人
+```bash
+cd ./examples
+python echo_bot_on.py
 ```
 
 ## 简单入门实例
