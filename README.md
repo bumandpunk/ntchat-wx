@@ -134,5 +134,4 @@ except KeyboardInterrupt:
     sys.exit()
 ```
 ## 感谢支持
-<img style="width:300px;height:480px" src="http://43.139.254.190/wx.jpg"/>
-<img style="width:300px;height:480px" src="http://43.139.254.190/zfb.jpg"/>
+<img style="width:300px;height:450px" src="http://43.139.254.190/wx.jpg"/><img style="width:300px;height:450px" src="http://43.139.254.190/zfb.jpg"/>
