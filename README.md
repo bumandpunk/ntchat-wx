@@ -15,7 +15,7 @@
 - demo中api使用天行数据和https://api.aa1.cn/ 的免费api ，可自行申请替换key
 ## 支持的微信版本下载
 - 下载 [WeChatSetup3.6.0.18.exe](https://github.com/bumandpunk/ntchat-wx/releases/download/v3.6.0.18/WeChatSetup-3.6.0.18.exe)
-- 下载 [禁用微信自动更新](https://github.com/bumandpunk/ntchat-wx/releases/download/v3.6.0.18/PC.exe)
+- 下载 [禁用微信自动更新.exe](https://github.com/bumandpunk/ntchat-wx/releases/download/v3.6.0.18/PC.exe)
 ## 帮助文档
 - 查看 [常见问题](docs/FAQ.md)
 - 查看 [常用示例](examples)
