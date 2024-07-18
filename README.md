@@ -19,7 +19,6 @@
 ## 帮助文档
 - 查看 [常见问题](docs/FAQ.md)
 - 查看 [常用示例](examples)
-- 查看 [NtChatHttp接口示例](fastapi_example)  
 - 查看 [微信机器人示例](examples/echo_bot_on.py)  
 ## 安装
 
