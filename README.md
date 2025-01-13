@@ -17,6 +17,7 @@
 - 下载 [WeChatSetup3.6.0.18.exe](https://github.com/bumandpunk/ntchat-wx/releases/download/v3.6.0.18/WeChatSetup-3.6.0.18.exe)
 - 下载 [禁用微信自动更新.exe](https://github.com/bumandpunk/ntchat-wx/releases/download/v3.6.0.18/PC.exe)
 ## 帮助文档
+- 查看 [修改微信版本号](change_version.py)
 - 查看 [常见问题](docs/FAQ.md)
 - 查看 [常用示例](examples)
 - 查看 [微信机器人示例](examples/echo_bot_on.py)  
